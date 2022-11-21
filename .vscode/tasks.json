@@ -1,14 +1,15 @@
 {
     "tasks": [
         {
-            "type": "cppbuild",
-            "label": "C/C++: cmake build active file",
+            "type": "shell",
+            "label": "C/C++: cmake build",
             "command": "cmake",
             "args": [
-                "--build build"
+                "--build",
+                "build"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$msCompile"
