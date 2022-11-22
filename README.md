@@ -13,12 +13,23 @@ int main() {
 
     std::cout << "hello scp" << std::endl;
 
-    scp::CronParser scp("5 4 L * ?", std::time(nullptr), 0, 0);
+    {
+        scp::CronParser scp("5 4 L * ?", std::time(nullptr), 0, 0);
 
-    for(auto i = 0; i < 10; i++) {
-        auto t = scp.next();
-        std::tm tm = *std::localtime(&t);
-        std::cout << std::asctime(&tm) << std::endl;
+        for(auto i = 0; i < 10; i++) {
+            auto t = scp.next();
+            std::tm tm = *std::localtime(&t);
+            std::cout << std::asctime(&tm) << std::endl;
+        }
+    }
+
+    {
+        scp::CronParser scp("5 4 2 * ?", std::time(nullptr), std::time(nullptr) - (90 * 24 * 60 * 60), std::time(nullptr) + (90 * 24 * 60 * 60));
+        for(auto i = 0; i < 10; i++) {
+            auto t = scp.next();
+            std::tm tm = *std::localtime(&t);
+            std::cout << std::asctime(&tm) << std::endl;
+        }
     }
 
     return 0;
